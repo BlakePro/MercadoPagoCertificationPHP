@@ -11,4 +11,4 @@ test_user_88281084@testuser.com
 qatest4645
 ```
 
-![App Certification MercadoPago](http://url/to/img.png)
+![App Certification MercadoPago](https://github.com/BlakePro/MercadoPagoCertificationPHP/blob/master/app.png)
