@@ -1,7 +1,7 @@
 <?php require_once 'vendor/autoload.php';
 
   define('EMAIL', 'cristian@i20veinte.com');
-  define('URL_CODE', 'https://github.com/BlakePro/MercadoPagoCertificationPHP');
+  define('URL_GITHUB', 'https://github.com/BlakePro/MercadoPagoCertificationPHP');
   define('URL', 'https://ezequiel.software/mercadopago/');
 
   define('TEST_USER', 'test_user_88281084@testuser.com');
@@ -108,7 +108,7 @@
             </div>{$mode_checkout}<h6 class='mb-3 text-right'><a class='text-decoration-none text-secondary' href='https://i20veinte.com'>i20veinte.com</a></h6>";
 
   $col_2 = "<h4>Preference ID</h4><p>{$preference_id}</p>
-            <h4>Code GitHub</h4><p><a target='_blank' href='".URL_CODE."'>".URL_CODE."</a></p>
+            <h4>Code GitHub</h4><p><a target='_blank' href='".URL_GITHUB."'>".URL_GITHUB."</a></p>
             <h4>Preference</h4><textarea rows='17' class='form-control code mb-2'>".print_r($preference_arr, TRUE)."</textarea>
             <h4>Curl User</h4><textarea rows='2' class='form-control code mb-2'>{$curl_new_user}</textarea>
             <h4>Documentation / Api</h4>{$html_docs}
