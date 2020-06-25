@@ -1,21 +1,4 @@
-<?php require_once 'vendor/autoload.php';
-
-  define('EMAIL', 'cristian@i20veinte.com');
-  define('URL_GITHUB', 'https://github.com/BlakePro/MercadoPagoCertificationPHP');
-  define('URL', 'https://ezequiel.software/mercadopago/');
-
-  //define('TEST_USER', 'test_user_88281084@testuser.com');
-  //define('ACCESS_TOKEN', 'APP_USR-2827457341168958-041607-755d8c9f5cd6bd292cff47d0cd9fdfbf-535650015');
-  //{"id":592148149,"nickname":"TESTYXARW8RJ","password":"qatest4645","site_status":"active","email":"test_user_88281084@testuser.com"}
-
-  define('TEST_USER', 'test_user_58295862@testuser.com');
-  define('INTEGRATOR_ID', 'dev_24c65fb163bf11ea96500242ac130004');
-  define('ACCESS_TOKEN', 'APP_USR-8058997674329963-062418-89271e2424bb1955bc05b1d7dd0977a8-592190948');
-
-  define('PICTURE_URL', URL.'iphone.png');
-  define('MODE', 'redirect');
-  define('UNIT_NAME', 'iPhone 8');
-  define('UNIT_PRICE', 16000);
+<?php include 'config.php';
 
   //START SDK MERCADOAPAGO AND INTEGRATION
   MercadoPago\SDK::setAccessToken(ACCESS_TOKEN);
@@ -39,7 +22,7 @@
   $item = new MercadoPago\Item();
   $item->id = '1234';
   $item->title = UNIT_NAME;
-  $item->description = 'Dispositivo móvil de Tienda e-commerce​';
+  $item->description = '"Dispositivo móvil de Tienda e-commerce​"​';
   $item->picture_url = PICTURE_URL;
   $item->category_id = 'Móviles';
   $item->quantity = 1;
@@ -50,22 +33,23 @@
 
   //PAYER
   $payer = new MercadoPago\Payer();
-  $payer->first_name = 'Lalo';
-  $payer->last_name = 'Landa';
+  $payer->name = 'Lalo';
+  $payer->surname = 'Landa';
   $payer->email = TEST_USER;
-  $payer->phone = ['area_code' => '52', 'number' => '​5549737300'];
+  $payer->phone = ['area_code' => '52', 'number' => '5549737300'];
   $payer->address = ['zip_code' => '03940', 'street_name' => 'Insurgentes Sur', 'street_number' => 1602];
   $preference->payer = $payer;
+
+  $excluded_payment_types = [];
+  foreach($arr_excluded_payment_methods as $k => $id_excluded)$excluded_payment_types[] = ['id' => $id_excluded];
 
   //PAYMENT METHOD / EXCLUDED
   $preference->payment_methods = [
     'excluded_payment_methods' => [
-      ['id' => 'MLMAM'],
-      ['id' => 'amex'],
+      //['id' => 'MLMAM'],
+      ['id' => 'amex']
     ],
-    'excluded_payment_types' => [
-      ['id' => 'atm']
-    ],
+    'excluded_payment_types' => $excluded_payment_types,
     'installments' => 6
   ];
 
@@ -92,12 +76,6 @@
   elseif(MODE == 'redirect')$mode_checkout = '<a class="btn btn-primary btn-block btn-lg my-3" href="'.$preference->init_point.'">Pagar la Compra</a>';
 
   //ARRAY DOCUMENTATION LINK
-  $array_doc_href = [
-    'https://www.mercadopago.com.mx/developers/es/reference/preferences/_checkout_preferences/post',
-    'https://api.mercadolibre.com/sites/MLM',
-    'https://api.mercadolibre.com/payment_types',
-    'https://api.mercadolibre.com/payment_methods/MLMAM'
-  ];
   $html_docs = '<ul>';
   foreach($array_doc_href as $no => $href)$html_docs .= "<li><a class='text-truncate' target='_blank' href='{$href}'>{$href}</a></li>";
   $html_docs .= '</ul>';
@@ -106,7 +84,7 @@
               <div class='card my-3 p-3' style='width: 100%;'>
               <img src='".PICTURE_URL."' class='card-img-top img-fluid mx-auto d-block' style='max-width:90px' alt='i20veinte example product'>
               <div class='card-body text-center'>
-                <h5 class='card-title'>'".UNIT_NAME."'​</h5>
+                <h5 class='card-title'>".UNIT_NAME."​</h5>
                 <p class='card-text'>Dispositivo móvil de Tienda e-commerce​</p>
                 <p class='card-text text-bold'>$".number_format(UNIT_PRICE, 2, '.', ',')."</p>
                 <a href='#' class='btn btn-secondary' disabled>Agregado</a>
@@ -142,18 +120,3 @@
           </body>
           <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
         </html>';
-
-  function fetch($url){
-    if($url != ''){
-      $timeout = 90;
-      $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36';
-      $curl = curl_init($url);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-      curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $timeout);
-      curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
-      curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);
-      $content = curl_exec($curl);
-      curl_close($curl);
-      return trim($content);
-    }
-  }
