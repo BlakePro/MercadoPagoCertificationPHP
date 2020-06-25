@@ -1,3 +1,2 @@
 <?php
-  echo 'PAGO SATISFACTORIO';
-  echo '<pre>',print_r(json_encode($_REQUEST), TRUE),'</pre>';
+  echo '<pre>',print_r($_REQUEST, TRUE),'</pre>';

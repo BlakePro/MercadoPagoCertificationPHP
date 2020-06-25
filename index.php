@@ -4,13 +4,18 @@
   define('URL_GITHUB', 'https://github.com/BlakePro/MercadoPagoCertificationPHP');
   define('URL', 'https://ezequiel.software/mercadopago/');
 
-  define('TEST_USER', 'test_user_88281084@testuser.com');
-  define('INTEGRATOR_ID', 'dev_24c65fb163bf11ea96500242ac130004');
-  define('ACCESS_TOKEN', 'APP_USR-2827457341168958-041607-755d8c9f5cd6bd292cff47d0cd9fdfbf-535650015');
+  //define('TEST_USER', 'test_user_88281084@testuser.com');
+  //define('ACCESS_TOKEN', 'APP_USR-2827457341168958-041607-755d8c9f5cd6bd292cff47d0cd9fdfbf-535650015');
   //{"id":592148149,"nickname":"TESTYXARW8RJ","password":"qatest4645","site_status":"active","email":"test_user_88281084@testuser.com"}
+
+  define('TEST_USER', 'test_user_58295862@testuser.com');
+  define('INTEGRATOR_ID', 'dev_24c65fb163bf11ea96500242ac130004');
+  define('ACCESS_TOKEN', 'APP_USR-8058997674329963-062418-89271e2424bb1955bc05b1d7dd0977a8-592190948');
 
   define('PICTURE_URL', URL.'iphone.png');
   define('MODE', 'redirect');
+  define('UNIT_NAME', 'iPhone 8');
+  define('UNIT_PRICE', 16000);
 
   //START SDK MERCADOAPAGO AND INTEGRATION
   MercadoPago\SDK::setAccessToken(ACCESS_TOKEN);
@@ -27,19 +32,19 @@
   $preference->notification_url = URL.'webhook';
 
   //ADITIONAL INFO
-  $preference->additional_info = EMAIL;
+  $preference->additional_info = URL;
 
   //ITEM
   $arr_items = [];
   $item = new MercadoPago\Item();
   $item->id = '1234';
-  $item->title = 'iPhone 11​';
+  $item->title = UNIT_NAME;
   $item->description = 'Dispositivo móvil de Tienda e-commerce​';
   $item->picture_url = PICTURE_URL;
   $item->category_id = 'Móviles';
   $item->quantity = 1;
   $item->currency_id = 'MXN';
-  $item->unit_price = 9997.30;
+  $item->unit_price = UNIT_PRICE;
   $arr_items[] = $item;
   $preference->items = $arr_items;
 
@@ -99,10 +104,11 @@
 
   $col_1 = "<a href='https://i20veinte.com' target='_blank'><img src='https://i20veinte.com/img/logo.png' alt='i20veinte' class='img-fluid mx-auto d-block' style='max-height:90px'></a>
               <div class='card my-3 p-3' style='width: 100%;'>
-              <img src='".PICTURE_URL."' class='card-img-top img-fluid mx-auto d-block' style='max-width:90px' alt='iPhone i20veinte'>
-              <div class='card-body'>
-                <h5 class='card-title'>iPhone 11​</h5>
+              <img src='".PICTURE_URL."' class='card-img-top img-fluid mx-auto d-block' style='max-width:90px' alt='i20veinte example product'>
+              <div class='card-body text-center'>
+                <h5 class='card-title'>'".UNIT_NAME."'​</h5>
                 <p class='card-text'>Dispositivo móvil de Tienda e-commerce​</p>
+                <p class='card-text text-bold'>$".number_format(UNIT_PRICE, 2, '.', ',')."</p>
                 <a href='#' class='btn btn-secondary' disabled>Agregado</a>
               </div>
             </div>{$mode_checkout}<h6 class='mb-3 text-right'><a class='text-decoration-none text-secondary' href='https://i20veinte.com'>i20veinte.com</a></h6>";
@@ -134,7 +140,7 @@
               </div>
             </div>
           </body>
-          <script src="https://.mercadopago.com/v2/security.js" view="item"></script>
+          <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
         </html>';
 
   function fetch($url){

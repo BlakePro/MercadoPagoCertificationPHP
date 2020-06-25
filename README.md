@@ -1,14 +1,19 @@
 ## Demo App
 https://ezequiel.software/mercadopago/
 
-## Test User
+## Access Token (Vendedor)
 ```
-test_user_88281084@testuser.com
+APP_USR-8058997674329963-062418-89271e2424bb1955bc05b1d7dd0977a8-592190948
 ```
 
-## Test Password
+## Test User (Comprador)
 ```
-qatest4645
+test_user_58295862@testuser.com
+```
+
+## Test Password (Comprador)
+```
+qatest9980
 ```
 
 ![App Certification MercadoPago](https://github.com/BlakePro/MercadoPagoCertificationPHP/blob/master/app.png)
