@@ -46,10 +46,10 @@
   //PAYMENT METHOD / EXCLUDED
   $preference->payment_methods = [
     'excluded_payment_methods' => [
-      //['id' => 'MLMAM'],
+      ['id' => 'atm'],
       ['id' => 'amex']
     ],
-    'excluded_payment_types' => $excluded_payment_types,
+    //'excluded_payment_types' => $excluded_payment_types,
     'installments' => 6
   ];
 

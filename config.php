@@ -32,6 +32,10 @@
     'https://www.mercadopago.com.mx/developers/en/guides/notifications/webhooks'
   ];
 
+  function pre($array){
+    echo '<pre>',print_r($array, TRUE),'</pre>';
+  }
+  
   function fetch($url){
     if($url != ''){
       $timeout = 90;
