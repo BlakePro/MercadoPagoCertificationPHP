@@ -1,0 +1,3 @@
+{"action":"payment.created","api_version":"v1","data":{"id":"7256234353"},"date_created":"2020-06-28T18:14:18Z","id":6047412949,"live_mode":true,"type":"payment","user_id":"592190948"}
+{"resource":"https://api.mercadolibre.com/collections/notifications/7256234353","topic":"payment"}
+{"resource":"https://api.mercadolibre.com/merchant_orders/1552023087","topic":"merchant_order"}
